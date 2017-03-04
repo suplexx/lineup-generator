@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <style>
+  body {
+    font-family: Verdana, sans-serif;
+    font-size: 16px;
+    background: #FAEBD7;
+
+  }
+  </style>
+</head>
+<body>
+  <h1>MMA Lineup Generator</h1>
+  <table>
+<tr><td>Number of Lineups</td> <td><input type="text" id="lineupsnum" value="" placeholder="*"></td></tr>
+<tr><td>Max Cost</td> <td> <input type="text" id="maxcost" value="" placeholder="*"></td></tr>
+<tr><td>Min Cost</td> <td> <input type="text" id="mincost" value="" placeholder="*"></td></tr>
+<tr><td>Single Tolerance</td> <td> <input type="singletol" id="playernum" value="" placeholder="*"></td></tr>
+<tr><td>Pair Tolerance</td> <td> <input type="text" id="pairtol" value="" placeholder="*"></td></tr><br><br>
+
+<table id="playertable" border="0">
+  <tr><th>Player</th><th>Cost</th></tr>
+    <tr><td><input type="text" id="player1" value="" placeholder="*"></td><td><input type="text" id="player1cost" value="" placeholder="*"></td></tr>
+    <tr><td><input type="text" id="player2" value="" placeholder="*"></td><td><input type="text" id="player2cost" value="" placeholder="*"></td></tr>
+    <tr><td><input type="text" id="player3" value="" placeholder="*"></td><td><input type="text" id="player3cost" value="" placeholder="*"></td></tr>
+    <tr><td><input type="text" id="player4" value="" placeholder="*"></td><td><input type="text" id="player4cost" value="" placeholder="*"></td></tr>
+    <tr><td><input type="text" id="player5" value="" placeholder="*"></td><td><input type="text" id="player5cost" value="" placeholder="*"></td></tr>
+    <tr><td><input type="text" id="player6" value="" placeholder="*"></td><td><input type="text" id="player6cost" value="" placeholder="*"></td></tr>
+</table>
+<br><br>
+<table id="results" border="1" cellpadding="6" cellspacing="0">
+  <thead>
+  <tr>
+    <th>Player 1</th>
+    <th>Player 2</th>
+    <th>Player 3</th>
+    <th>Player 4</th>
+    <th>Player 5</th>
+    <th>Player 6</th>
+    <th>Total Cost</th>
+  </tr>
+  </thead>
+  <tbody id="resultsBody">
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+  </tbody>
+</table>
