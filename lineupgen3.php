@@ -9,10 +9,15 @@
 
   }
   </style>
+<script type="text/javascript">
+function clearTable() {
+ $("resultsBody").children().remove();
+}
+</script>
 </head>
 <body>
 
-  <h1>MMA Lineup Generator</h1>
+  <h1>MMA Lineup Generator Alpha 0.1.4</h1>
   <table>
     <form action="" method='post'>
       <!--perhaps not necessary for this setup
@@ -54,13 +59,10 @@
   if (isset( $_POST['player8cost'])){$playerhcost = $_POST['player8cost'];}
 if (!empty($_POST)) {
 try {
-  $connection = new PDO('mysql:host=localhost', 'root', 'cookie');
-  $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $connection->query("CREATE DATABASE IF NOT EXISTS mmaLineupGen");
-  $connection->query("use mmaLineupGen");
-  $connection->query("CREATE TABLE IF NOT EXISTS mmaLineupGen.fighters (Name char(16), salary mediumint(15) )");
-  $connection->query("DELETE FROM mmaLineupGen.fighters WHERE Name IS NULL");
-  $connection->query("DELETE FROM mmaLineupGen.fighters WHERE salary IS NULL");
+  include "connect.php";
+  $connection->query("CREATE TABLE IF NOT EXISTS katiemft_tristian.fighters (Name char(16), salary mediumint(15) )");
+  $connection->query("DELETE FROM katiemft_tristian.fighters WHERE Name IS NULL");
+  $connection->query("DELETE FROM katiemft_tristian.fighters WHERE salary IS NULL");
   $sql = $connection->prepare("INSERT INTO fighters (Name, salary) VALUES
   (:Name, :salary)");
   $sql->bindParam(':Name', $player1);
@@ -141,8 +143,8 @@ if (isset( $_POST['player8'])){
     <tr>
     <?php
      while($row = $sql2->fetch(PDO::FETCH_ASSOC)){
-      echo '<td>' . $row['Name'] . '</td>';
-      echo '<td>' . $row['SUM(salary)'] . '</td>';
+      echo '<td id=1>' . $row['Name'] . '</td>';
+      echo '<td id=1>' . $row['SUM(salary)'] . '</td>';
   }
 }
 }
@@ -152,11 +154,15 @@ if (isset( $_POST['player8'])){
 }
     }
 
-
 $connection = null;
 
 ?>
-<input type="submit" name="submit"><br><br>
+<input type="submit" name="submit" value="Submit">
+
+<button type="submit" name="Refresh" value="RefreshTable" onclick="window.location.reload(true);" >Refresh Table</button>
+<button type="submit" name="Delete" value="Clear Lineup" onclick="clearTable()">Clear Lineup</button></form>
+<h2>Delete all records</h2><form action="delete.php" method="post"><input type="submit" name="delete_all" value="Delete All Records"></form>
+<br><br>
 </tr>
 </tbody>
 </table>
